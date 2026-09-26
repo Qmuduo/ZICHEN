@@ -35,6 +35,7 @@ import com.qmuduo.zichen.timer.TimerNotifications
 import com.qmuduo.zichen.timer.TimerPreset
 import com.qmuduo.zichen.timer.TimerStatus
 import com.qmuduo.zichen.ui.date.AlmanacDetailScreen
+import com.qmuduo.zichen.ui.date.ClockCalendarScreen
 import com.qmuduo.zichen.ui.date.LunarCalendarScreen
 import com.qmuduo.zichen.ui.detail.TimeDetailScreen
 import com.qmuduo.zichen.ui.home.HomeScreen
@@ -47,6 +48,7 @@ private enum class AppPage {
     HOME,
     TIME_DETAIL,
     DATE_DETAIL,
+    CLOCK_CALENDAR,
     ALMANAC_DETAIL,
     TIMER,
 }
@@ -77,6 +79,17 @@ private fun ZichenApp() {
     var selectedDateIso by rememberSaveable { mutableStateOf(today.toString()) }
     val calendarMonth = remember(calendarMonthIso) { YearMonth.parse(calendarMonthIso) }
     val selectedDate = remember(selectedDateIso) { LocalDate.parse(selectedDateIso) }
+    val onCalendarMonthChange: (YearMonth) -> Unit = { month ->
+        calendarMonthIso = month.toString()
+        selectedDateIso = month.atDay(selectedDate.dayOfMonth.coerceAtMost(month.lengthOfMonth())).toString()
+    }
+    val onSelectCalendarDate: (LocalDate) -> Unit = { date -> selectedDateIso = date.toString() }
+    val onCalendarToday: () -> Unit = {
+        val currentDate = LocalDate.now()
+        today = currentDate
+        calendarMonthIso = YearMonth.from(currentDate).toString()
+        selectedDateIso = currentDate.toString()
+    }
     var previewedIndex by rememberSaveable { mutableIntStateOf(-1) }
     var detailIndex by rememberSaveable { mutableIntStateOf(0) }
     var timerState by remember { mutableStateOf(timerCoordinator.restore()) }
@@ -134,7 +147,7 @@ private fun ZichenApp() {
     }
 
     LaunchedEffect(page) {
-        if (page == AppPage.DATE_DETAIL.name) {
+        if (page == AppPage.DATE_DETAIL.name || page == AppPage.CLOCK_CALENDAR.name) {
             while (true) {
                 today = LocalDate.now()
                 delay(60_000L)
@@ -143,7 +156,10 @@ private fun ZichenApp() {
     }
 
     BackHandler(enabled = page != AppPage.HOME.name) {
-        page = if (page == AppPage.ALMANAC_DETAIL.name) AppPage.DATE_DETAIL.name else AppPage.HOME.name
+        page = when (AppPage.valueOf(page)) {
+            AppPage.CLOCK_CALENDAR, AppPage.ALMANAC_DETAIL -> AppPage.DATE_DETAIL.name
+            else -> AppPage.HOME.name
+        }
     }
 
     when (AppPage.valueOf(page)) {
@@ -169,21 +185,25 @@ private fun ZichenApp() {
             today = today,
             provider = calendarProvider,
             onBack = { page = AppPage.HOME.name },
-            onMonthChange = { month ->
-                calendarMonthIso = month.toString()
-                selectedDateIso = month.atDay(selectedDate.dayOfMonth.coerceAtMost(month.lengthOfMonth())).toString()
-            },
-            onSelectDate = { date -> selectedDateIso = date.toString() },
-            onToday = {
-                val currentDate = LocalDate.now()
-                today = currentDate
-                calendarMonthIso = YearMonth.from(currentDate).toString()
-                selectedDateIso = currentDate.toString()
-            },
+            onMonthChange = onCalendarMonthChange,
+            onSelectDate = onSelectCalendarDate,
+            onToday = onCalendarToday,
+            onOpenClockCalendar = { page = AppPage.CLOCK_CALENDAR.name },
             onOpenDetails = { date ->
                 selectedDateIso = date.toString()
                 page = AppPage.ALMANAC_DETAIL.name
             },
+        )
+
+        AppPage.CLOCK_CALENDAR -> ClockCalendarScreen(
+            month = calendarMonth,
+            selectedDate = selectedDate,
+            today = today,
+            provider = calendarProvider,
+            onMonthChange = onCalendarMonthChange,
+            onSelectDate = onSelectCalendarDate,
+            onToday = onCalendarToday,
+            onOpenMonthCalendar = { page = AppPage.DATE_DETAIL.name },
         )
 
         AppPage.ALMANAC_DETAIL -> AlmanacDetailScreen(

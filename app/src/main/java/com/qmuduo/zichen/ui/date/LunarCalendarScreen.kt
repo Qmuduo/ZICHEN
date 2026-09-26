@@ -54,6 +54,7 @@ fun LunarCalendarScreen(
     onMonthChange: (YearMonth) -> Unit,
     onSelectDate: (LocalDate) -> Unit,
     onToday: () -> Unit,
+    onOpenClockCalendar: () -> Unit,
     onOpenDetails: (LocalDate) -> Unit,
 ) {
     val calendar = remember(provider, month) { provider.getMonth(month) }
@@ -72,7 +73,11 @@ fun LunarCalendarScreen(
     ) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             CalendarAction("‹ 返回", onBack, Modifier.weight(1f))
-            CalendarText("日　期", color = HomePalette.TextMuted, size = 14.sp)
+            CalendarModeSwitcher(
+                isClockCalendar = false,
+                onSelectMonth = {},
+                onSelectClockCalendar = onOpenClockCalendar,
+            )
             CalendarAction("今天", onToday, Modifier.weight(1f), alignment = Alignment.CenterEnd)
         }
         Spacer(Modifier.height(16.dp))
