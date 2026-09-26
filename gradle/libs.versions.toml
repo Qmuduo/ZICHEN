@@ -1,0 +1,21 @@
+[versions]
+agp = "8.13.2"
+kotlin = "2.3.21"
+composeBom = "2026.06.01"
+activityCompose = "1.13.0"
+junit = "4.13.2"
+lunar = "1.7.7"
+
+[libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+junit = { module = "junit:junit", version.ref = "junit" }
+lunar = { module = "cn.6tail:lunar", version.ref = "lunar" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
