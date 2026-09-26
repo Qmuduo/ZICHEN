@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -150,7 +152,7 @@ private fun AlmanacDateRail(day: LunarCalendarDay, modifier: Modifier = Modifier
         day.monthGanzhi?.let { "${it}月" },
         day.dayGanzhi?.let { "${it}日" },
     )
-    Row(
+    BoxWithConstraints(
         modifier
             .drawBehind {
                 drawLine(
@@ -159,21 +161,41 @@ private fun AlmanacDateRail(day: LunarCalendarDay, modifier: Modifier = Modifier
                 )
             }
             .padding(top = 16.dp, end = 10.dp, bottom = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        AlmanacText(
-            lunarDate.toList().joinToString("\n"),
-            Modifier.weight(0.6f).clearAndSetSemantics { contentDescription = lunarDate },
-            HomePalette.TextBright, 23.sp, TextAlign.Center,
-        )
-        if (pillars.isNotEmpty()) {
-            AlmanacText(
-                pillars.joinToString("\n\n") { it.toList().joinToString("\n") },
-                Modifier.weight(0.4f).clearAndSetSemantics {
-                    contentDescription = "干支：${pillars.joinToString("，")}"
-                },
-                HomePalette.TextMuted, 12.sp, TextAlign.Center,
-            )
+        val density = LocalDensity.current
+        // Leave a little font-bearing room beyond each scaled CJK glyph.
+        val dateGlyphWidth = with(density) { 25.sp.toDp() }
+        val pillarGlyphWidth = with(density) { 14.sp.toDp() }
+        val columnWidth = maxWidth - 6.dp
+        if (columnWidth * 0.6f < dateGlyphWidth || columnWidth * 0.4f < pillarGlyphWidth) {
+            Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                AlmanacText(
+                    lunarDate, Modifier.fillMaxWidth(), HomePalette.TextBright, 23.sp, TextAlign.Center,
+                )
+                if (pillars.isNotEmpty()) {
+                    AlmanacText(
+                        pillars.joinToString("\n"), Modifier.fillMaxWidth(),
+                        HomePalette.TextMuted, 12.sp, TextAlign.Center,
+                    )
+                }
+            }
+        } else {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                AlmanacText(
+                    lunarDate.toList().joinToString("\n"),
+                    Modifier.weight(0.6f).clearAndSetSemantics { contentDescription = lunarDate },
+                    HomePalette.TextBright, 23.sp, TextAlign.Center,
+                )
+                if (pillars.isNotEmpty()) {
+                    AlmanacText(
+                        pillars.joinToString("\n\n") { it.toList().joinToString("\n") },
+                        Modifier.weight(0.4f).clearAndSetSemantics {
+                            contentDescription = "干支：${pillars.joinToString("，")}"
+                        },
+                        HomePalette.TextMuted, 12.sp, TextAlign.Center,
+                    )
+                }
+            }
         }
     }
 }
