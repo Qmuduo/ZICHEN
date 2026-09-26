@@ -28,6 +28,7 @@ data class LunarCalendarDay(
     val dayGanzhi: String? = null,
     val solarTerm: String? = null,
     val festivals: List<String> = emptyList(),
+    val primaryCellFestival: String? = null,
     val yi: List<String> = emptyList(),
     val ji: List<String> = emptyList(),
     val nayin: String? = null,
@@ -52,7 +53,7 @@ data class LunarCalendarDay(
         get() = lunarMonthName?.let { month -> month + lunarDayName.orEmpty() }
     val eventLabels: List<String>
         get() = (festivals + listOfNotNull(solarTerm)).distinct()
-    val cellLabel: String? get() = festivals.firstOrNull() ?: solarTerm
+    val cellLabel: String? get() = primaryCellFestival ?: solarTerm
     val sourceDescription: String
         get() = "历法及民俗资料：6tail lunar-java 1.7.7；农历年与生肖以正月初一换年，年柱以立春当天换年，月柱以节交接当天换月，日柱以本地日期零点换日；福神采用流派二。"
 }

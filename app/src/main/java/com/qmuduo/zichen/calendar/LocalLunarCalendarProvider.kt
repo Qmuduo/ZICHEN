@@ -30,6 +30,7 @@ class LocalLunarCalendarProvider : LunarCalendarProvider {
             val solar = Solar(date.year, date.monthValue, date.dayOfMonth)
             val lunar = solar.lunar
             val fullAlmanac = date.year in 2025..2028
+            val primaryFestivals = labels { lunar.festivals } + labels { solar.festivals }
             gregorian.copy(
                 lunarYear = lunar.year,
                 lunarYearName = text { lunar.yearInGanZhi },
@@ -40,8 +41,9 @@ class LocalLunarCalendarProvider : LunarCalendarProvider {
                 monthGanzhi = text { lunar.monthInGanZhi },
                 dayGanzhi = text { lunar.dayInGanZhi },
                 solarTerm = text { lunar.jieQi },
-                festivals = (labels { lunar.festivals } + labels { solar.festivals } +
+                festivals = (primaryFestivals +
                     labels { lunar.otherFestivals } + labels { solar.otherFestivals }).distinct(),
+                primaryCellFestival = primaryFestivals.firstOrNull(),
                 yi = if (fullAlmanac) labels { lunar.dayYi } else emptyList(),
                 ji = if (fullAlmanac) labels { lunar.dayJi } else emptyList(),
                 nayin = if (fullAlmanac) text { lunar.dayNaYin } else null,
