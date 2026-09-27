@@ -1,0 +1,155 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A6629B3EFB575B1D59EB3F86 = { isa = PBXBuildFile; fileRef = B2DD11B267B35182A80F0ACD; };
+		2A5D73882F50E3586FCE1BC4 = { isa = PBXBuildFile; fileRef = 9D34DED3BAD7EC747F881F9A; };
+		106115FF04F3BA1B65E30906 = { isa = PBXBuildFile; fileRef = E89137A106D1E1AEA4BA60DD; };
+		9F15FBE890908F91C03BB06E = { isa = PBXBuildFile; fileRef = AC3DD9F29398852CAC18FF40; };
+		AF6981B5393234A558081F26 = { isa = PBXBuildFile; fileRef = 0B39769F2834238E47B3D9E2; };
+		F6FABBAE2BE9169D423C26AF = { isa = PBXBuildFile; fileRef = 3F5E33B0EBF0D7B49013BF4D; };
+		9E79A043C709C5E4B79D9688 = { isa = PBXBuildFile; fileRef = 2B565C352DF3A2F667BED4E7; };
+		AABD3D6C40E021BABC1044CF = { isa = PBXBuildFile; fileRef = 5B4BEEBB0A26B4258BF4FD9C; };
+		FF9BE0950F5196F485F0610A = { isa = PBXBuildFile; fileRef = B0B711A52CCE3CC89560C6DF; };
+		5415876220E3F1E3D4AA455B = { isa = PBXBuildFile; fileRef = B8E74F6AD101F58450169A3E; };
+		BA7F77F8E2B0FA53A3B5DB9C = { isa = PBXBuildFile; fileRef = 323AAB394AABCAB8297B1270; };
+		A740078D72F5E9EDFA0B13FA = { isa = PBXBuildFile; fileRef = 322407882ADF5373DB180E9F; };
+		144E69A52C70CE6846EABD48 = { isa = PBXBuildFile; fileRef = 6C9C2038D15D261C7E6D0014; };
+		1A3CB31D10EBCED43D60109E = { isa = PBXBuildFile; fileRef = 9936A8BE8CC82B03597B1C89; };
+		DF28CD738E91D77A5F5EA161 = { isa = PBXBuildFile; fileRef = A562C59C4FAD80B099ADB3F0; };
+		03495A6F9B8A253BC6A8F47E = { isa = PBXBuildFile; fileRef = DD46C03E524A71C783082E9C; };
+		52ACFA40967676BB425E255B = { isa = PBXBuildFile; fileRef = D18778AA072E4B3F3B19BCAB; };
+		9C0FC9B8FFE7A70B56AD231E = { isa = PBXBuildFile; fileRef = 0156FB78176709B4DB196671; };
+		F21C4BDF0194AB0219972B4F = { isa = PBXBuildFile; fileRef = 622B597229D4CA832E5BACD7; };
+		DE2169036565D907D33CC55B = { isa = PBXBuildFile; fileRef = A8618268222ACDB7743A164F; };
+		A81DCE9E9FEC03E6A959299B = { isa = PBXBuildFile; fileRef = 1C3A9E4A254F1ABBCDB36ADB; };
+		5A603C00F047AFF792CC8A26 = { isa = PBXBuildFile; fileRef = 9D37B07D0678882C5A5577C4; };
+		C554059860A841F6510872C1 = { isa = PBXBuildFile; fileRef = 7D3C18451C64DF55C24E3015; };
+		2ECE18080AC7072D68D703C0 = { isa = PBXBuildFile; fileRef = 8BDD069B38FB5885987F6D73; };
+		B292A90AC4C9A96B4F6E5B77 = { isa = PBXBuildFile; fileRef = EA2DDDC27E266942987519C7; };
+		B4C9073211FD49849A6CA02A = { isa = PBXBuildFile; fileRef = C44BC63B20C2D8A6C972E785; };
+		C5E57783D7D36D86B0C6D530 = { isa = PBXBuildFile; fileRef = FE5CBACC4C1E78EB86F015B9; };
+		5FB54193E8024AC6C74860FC = { isa = PBXBuildFile; fileRef = F87EADBB41FF93530ADFDBA6; };
+		C75EDF0C74BE09146EC88EED = { isa = PBXBuildFile; fileRef = 0287121273FD4050DB1A0061; };
+		34CAAA63F496C4C517600CDB = { isa = PBXBuildFile; productRef = D7CA3B65B97D744159F7A901; };
+		BE602BDDF161998557ABD4AC = { isa = PBXBuildFile; fileRef = D978453561F29062F28EFC0E; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		014DA778EC8B75F567228DB2 = { isa = PBXContainerItemProxy; containerPortal = CE98C702C817CF89CB51B543; proxyType = 1; remoteGlobalIDString = 5BF9E5AB540E3B6E947C44FC; remoteInfo = Zichen; };
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B2DD11B267B35182A80F0ACD = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppRootView.swift"; sourceTree = "<group>"; };
+		9D34DED3BAD7EC747F881F9A = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZichenApp.swift"; sourceTree = "<group>"; };
+		E89137A106D1E1AEA4BA60DD = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppTheme.swift"; sourceTree = "<group>"; };
+		AC3DD9F29398852CAC18FF40 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalLunarCalendarProvider.swift"; sourceTree = "<group>"; };
+		0B39769F2834238E47B3D9E2 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LunarCalendarDay.swift"; sourceTree = "<group>"; };
+		3F5E33B0EBF0D7B49013BF4D = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LunarCalendarProviding.swift"; sourceTree = "<group>"; };
+		2B565C352DF3A2F667BED4E7 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeDetailContent.swift"; sourceTree = "<group>"; };
+		5B4BEEBB0A26B4258BF4FD9C = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TraditionalTime.swift"; sourceTree = "<group>"; };
+		B0B711A52CCE3CC89560C6DF = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RitualTimerState.swift"; sourceTree = "<group>"; };
+		B8E74F6AD101F58450169A3E = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlmanacDetailView.swift"; sourceTree = "<group>"; };
+		323AAB394AABCAB8297B1270 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarGridView.swift"; sourceTree = "<group>"; };
+		322407882ADF5373DB180E9F = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarSelectionStore.swift"; sourceTree = "<group>"; };
+		6C9C2038D15D261C7E6D0014 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClockCalendarView.swift"; sourceTree = "<group>"; };
+		9936A8BE8CC82B03597B1C89 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LunarCalendarView.swift"; sourceTree = "<group>"; };
+		A562C59C4FAD80B099ADB3F0 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthHeaderView.swift"; sourceTree = "<group>"; };
+		DD46C03E524A71C783082E9C = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DialGeometry.swift"; sourceTree = "<group>"; };
+		D18778AA072E4B3F3B19BCAB = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeView.swift"; sourceTree = "<group>"; };
+		0156FB78176709B4DB196671 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShichenDialView.swift"; sourceTree = "<group>"; };
+		622B597229D4CA832E5BACD7 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeDetailView.swift"; sourceTree = "<group>"; };
+		A8618268222ACDB7743A164F = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerStore.swift"; sourceTree = "<group>"; };
+		1C3A9E4A254F1ABBCDB36ADB = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerView.swift"; sourceTree = "<group>"; };
+		8BDD069B38FB5885987F6D73 = { isa = PBXFileReference; lastKnownFileType = audio.wav; path = "gentle_chime.wav"; sourceTree = "<group>"; };
+		9D37B07D0678882C5A5577C4 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerNotificationScheduler.swift"; sourceTree = "<group>"; };
+		7D3C18451C64DF55C24E3015 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerPersistence.swift"; sourceTree = "<group>"; };
+		AFDDA9FC6702E4451216E489 = { isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info.plist"; sourceTree = "<group>"; };
+		EA2DDDC27E266942987519C7 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarSelectionStoreTests.swift"; sourceTree = "<group>"; };
+		C44BC63B20C2D8A6C972E785 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DialGeometryTests.swift"; sourceTree = "<group>"; };
+		FE5CBACC4C1E78EB86F015B9 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LunarCalendarProviderTests.swift"; sourceTree = "<group>"; };
+		F87EADBB41FF93530ADFDBA6 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RitualTimerStateTests.swift"; sourceTree = "<group>"; };
+		0287121273FD4050DB1A0061 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TraditionalTimeTests.swift"; sourceTree = "<group>"; };
+		91F8EFA4BFCB8E5DBC373F4E = { isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zichen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80777226423A968D4E001C45 = { isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZichenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D978453561F29062F28EFC0E = { isa = PBXFileReference; lastKnownFileType = text.json; path = "calendar-parity.json"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		34AC2B8A8611DDCFEC2F56DE /* Frameworks */ = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (34CAAA63F496C4C517600CDB); runOnlyForDeploymentPostprocessing = 0; };
+		2586003F84E7C33B8E549269 /* Frameworks */ = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09D542F8EF3C5899E699E743 = { isa = PBXGroup; children = (B2DD11B267B35182A80F0ACD, 9D34DED3BAD7EC747F881F9A); path = "App"; sourceTree = "<group>"; };
+		BD5088C3B3A98B81E16FDC26 = { isa = PBXGroup; children = (E89137A106D1E1AEA4BA60DD); path = "Design"; sourceTree = "<group>"; };
+		7A402E2C801F5855E08A7B4B = { isa = PBXGroup; children = (AC3DD9F29398852CAC18FF40, 0B39769F2834238E47B3D9E2, 3F5E33B0EBF0D7B49013BF4D); path = "Calendar"; sourceTree = "<group>"; };
+		CD815571AD4D78F46E99E14E = { isa = PBXGroup; children = (2B565C352DF3A2F667BED4E7, 5B4BEEBB0A26B4258BF4FD9C); path = "Time"; sourceTree = "<group>"; };
+		F0F86E68B566F1161AE1AFC2 = { isa = PBXGroup; children = (B0B711A52CCE3CC89560C6DF); path = "Timer"; sourceTree = "<group>"; };
+		99965E6BDE5F1021234650C0 = { isa = PBXGroup; children = (7A402E2C801F5855E08A7B4B, CD815571AD4D78F46E99E14E, F0F86E68B566F1161AE1AFC2); path = "Domain"; sourceTree = "<group>"; };
+		E3746D91214065F8516E0FD2 = { isa = PBXGroup; children = (B8E74F6AD101F58450169A3E, 323AAB394AABCAB8297B1270, 322407882ADF5373DB180E9F, 6C9C2038D15D261C7E6D0014, 9936A8BE8CC82B03597B1C89, A562C59C4FAD80B099ADB3F0); path = "Calendar"; sourceTree = "<group>"; };
+		5A32E30BDB035D6B4084D854 = { isa = PBXGroup; children = (DD46C03E524A71C783082E9C, D18778AA072E4B3F3B19BCAB, 0156FB78176709B4DB196671); path = "Home"; sourceTree = "<group>"; };
+		9D42AB1721C0BD84508102D5 = { isa = PBXGroup; children = (622B597229D4CA832E5BACD7); path = "TimeDetail"; sourceTree = "<group>"; };
+		5FD3528C20474C4C98F61311 = { isa = PBXGroup; children = (A8618268222ACDB7743A164F, 1C3A9E4A254F1ABBCDB36ADB); path = "Timer"; sourceTree = "<group>"; };
+		8B6B22EA8F1695C3BA82A010 = { isa = PBXGroup; children = (E3746D91214065F8516E0FD2, 5A32E30BDB035D6B4084D854, 9D42AB1721C0BD84508102D5, 5FD3528C20474C4C98F61311); path = "Features"; sourceTree = "<group>"; };
+		D2E9547CA042D6D049E441C0 = { isa = PBXGroup; children = (8BDD069B38FB5885987F6D73); path = "Resources"; sourceTree = "<group>"; };
+		43121108DB32A18C5E47DAA4 = { isa = PBXGroup; children = (9D37B07D0678882C5A5577C4, 7D3C18451C64DF55C24E3015); path = "Services"; sourceTree = "<group>"; };
+		C51CD12BB02C3CE6F9DF4330 = { isa = PBXGroup; children = (09D542F8EF3C5899E699E743, BD5088C3B3A98B81E16FDC26, 99965E6BDE5F1021234650C0, 8B6B22EA8F1695C3BA82A010, D2E9547CA042D6D049E441C0, 43121108DB32A18C5E47DAA4, AFDDA9FC6702E4451216E489); path = "Zichen"; sourceTree = "<group>"; };
+		113CA95B7F529401B0112BAA = { isa = PBXGroup; children = (D978453561F29062F28EFC0E); path = "Fixtures"; sourceTree = "<group>"; };
+		3F9DD3678B4C0BD39F77F0EE = { isa = PBXGroup; children = (113CA95B7F529401B0112BAA, EA2DDDC27E266942987519C7, C44BC63B20C2D8A6C972E785, FE5CBACC4C1E78EB86F015B9, F87EADBB41FF93530ADFDBA6, 0287121273FD4050DB1A0061); path = "ZichenTests"; sourceTree = "<group>"; };
+		AFC9AAAFA105B53F921826F1 = { isa = PBXGroup; children = (91F8EFA4BFCB8E5DBC373F4E, 80777226423A968D4E001C45); name = Products; sourceTree = "<group>"; };
+		DFBD5FB00705470EC2216AC7 = { isa = PBXGroup; children = (C51CD12BB02C3CE6F9DF4330, 3F9DD3678B4C0BD39F77F0EE, AFC9AAAFA105B53F921826F1); sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5BF9E5AB540E3B6E947C44FC /* Zichen */ = { isa = PBXNativeTarget; buildConfigurationList = 07ED938FC97FDBB947D9BC64; buildPhases = (1BF22626B9F86DEB94C253A3, 34AC2B8A8611DDCFEC2F56DE, 1A7B704B8EB2F0380BC48087); buildRules = (); dependencies = (); name = Zichen; packageProductDependencies = (D7CA3B65B97D744159F7A901); productName = Zichen; productReference = 91F8EFA4BFCB8E5DBC373F4E; productType = "com.apple.product-type.application"; };
+		14D11FF98D43E5D0F2AEF26F /* ZichenTests */ = { isa = PBXNativeTarget; buildConfigurationList = FF728A01236A4D013BB5A636; buildPhases = (518065898FEAF9FC716BC568, 2586003F84E7C33B8E549269, B2884657CD55926C1DCB111D); buildRules = (); dependencies = (E7774CC15B9B61A34BEE9400); name = ZichenTests; productName = ZichenTests; productReference = 80777226423A968D4E001C45; productType = "com.apple.product-type.bundle.unit-test"; };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE98C702C817CF89CB51B543 /* Project object */ = { isa = PBXProject; attributes = { BuildIndependentTargetsInParallel = YES; LastUpgradeCheck = 1600; TargetAttributes = { 5BF9E5AB540E3B6E947C44FC = { CreatedOnToolsVersion = 16.0; }; 14D11FF98D43E5D0F2AEF26F = { CreatedOnToolsVersion = 16.0; TestTargetID = 5BF9E5AB540E3B6E947C44FC; }; }; }; buildConfigurationList = C6E18B46CF7E9E6E1CB942F9; compatibilityVersion = "Xcode 14.0"; mainGroup = DFBD5FB00705470EC2216AC7; packageReferences = (37938C7CA6EA59B1260B9DD6); productRefGroup = AFC9AAAFA105B53F921826F1; projectDirPath = ""; projectRoot = ""; targets = (5BF9E5AB540E3B6E947C44FC, 14D11FF98D43E5D0F2AEF26F); };
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A7B704B8EB2F0380BC48087 /* Resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (2ECE18080AC7072D68D703C0); runOnlyForDeploymentPostprocessing = 0; };
+		B2884657CD55926C1DCB111D /* Resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (BE602BDDF161998557ABD4AC); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1BF22626B9F86DEB94C253A3 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A6629B3EFB575B1D59EB3F86, 2A5D73882F50E3586FCE1BC4, 106115FF04F3BA1B65E30906, 9F15FBE890908F91C03BB06E, AF6981B5393234A558081F26, F6FABBAE2BE9169D423C26AF, 9E79A043C709C5E4B79D9688, AABD3D6C40E021BABC1044CF, FF9BE0950F5196F485F0610A, 5415876220E3F1E3D4AA455B, BA7F77F8E2B0FA53A3B5DB9C, A740078D72F5E9EDFA0B13FA, 144E69A52C70CE6846EABD48, 1A3CB31D10EBCED43D60109E, DF28CD738E91D77A5F5EA161, 03495A6F9B8A253BC6A8F47E, 52ACFA40967676BB425E255B, 9C0FC9B8FFE7A70B56AD231E, F21C4BDF0194AB0219972B4F, DE2169036565D907D33CC55B, A81DCE9E9FEC03E6A959299B, 5A603C00F047AFF792CC8A26, C554059860A841F6510872C1); runOnlyForDeploymentPostprocessing = 0; };
+		518065898FEAF9FC716BC568 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B292A90AC4C9A96B4F6E5B77, B4C9073211FD49849A6CA02A, C5E57783D7D36D86B0C6D530, 5FB54193E8024AC6C74860FC, C75EDF0C74BE09146EC88EED); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E7774CC15B9B61A34BEE9400 = { isa = PBXTargetDependency; target = 5BF9E5AB540E3B6E947C44FC; targetProxy = 014DA778EC8B75F567228DB2; };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AD30DCD0DC903018CA1315C3 = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; TARGETED_DEVICE_FAMILY = 1; ENABLE_TESTABILITY = YES; GCC_OPTIMIZATION_LEVEL = 0; SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)"; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; DEBUG_INFORMATION_FORMAT = dwarf; }; name = Debug; };
+		D7F54426920A5A0AF38B276C = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; TARGETED_DEVICE_FAMILY = 1; SWIFT_OPTIMIZATION_LEVEL = "-O"; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; }; name = Release; };
+		7306F9FB7D013E287A21DE5B = { isa = XCBuildConfiguration; buildSettings = { CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Zichen/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = com.qmuduo.zichen.ios; PRODUCT_NAME = Zichen; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; SWIFT_EMIT_LOC_STRINGS = YES; ENABLE_PREVIEWS = YES; SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)"; }; name = Debug; };
+		114B49AECF32B54EF453A3AB = { isa = XCBuildConfiguration; buildSettings = { CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Zichen/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = com.qmuduo.zichen.ios; PRODUCT_NAME = Zichen; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; SWIFT_EMIT_LOC_STRINGS = YES; ENABLE_PREVIEWS = YES; }; name = Release; };
+		939FE5C62C9B8498C1ABFB77 = { isa = XCBuildConfiguration; buildSettings = { BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 16.0; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks"; PRODUCT_BUNDLE_IDENTIFIER = com.qmuduo.zichen.ios.tests; PRODUCT_NAME = ZichenTests; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zichen.app/Zichen"; TEST_TARGET_NAME = Zichen; SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)"; }; name = Debug; };
+		675FCCF4663C491BECB164EB = { isa = XCBuildConfiguration; buildSettings = { BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 16.0; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks"; PRODUCT_BUNDLE_IDENTIFIER = com.qmuduo.zichen.ios.tests; PRODUCT_NAME = ZichenTests; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zichen.app/Zichen"; TEST_TARGET_NAME = Zichen; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6E18B46CF7E9E6E1CB942F9 = { isa = XCConfigurationList; buildConfigurations = (AD30DCD0DC903018CA1315C3, D7F54426920A5A0AF38B276C); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		07ED938FC97FDBB947D9BC64 = { isa = XCConfigurationList; buildConfigurations = (7306F9FB7D013E287A21DE5B, 114B49AECF32B54EF453A3AB); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		FF728A01236A4D013BB5A636 = { isa = XCConfigurationList; buildConfigurations = (939FE5C62C9B8498C1ABFB77, 675FCCF4663C491BECB164EB); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		37938C7CA6EA59B1260B9DD6 = { isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/6tail/lunar-swift"; requirement = { kind = exactVersion; version = 1.1.8; }; };
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D7CA3B65B97D744159F7A901 = { isa = XCSwiftPackageProductDependency; package = 37938C7CA6EA59B1260B9DD6; productName = LunarSwift; };
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CE98C702C817CF89CB51B543;
+}
