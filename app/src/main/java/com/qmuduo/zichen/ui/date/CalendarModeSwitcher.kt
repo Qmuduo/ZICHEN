@@ -28,19 +28,20 @@ internal fun CalendarModeSwitcher(
     isClockCalendar: Boolean,
     onSelectMonth: () -> Unit,
     onSelectClockCalendar: () -> Unit,
+    compact: Boolean = false,
 ) {
     Row(
         modifier = Modifier.background(HomePalette.Background.copy(alpha = 0.55f), RoundedCornerShape(14.dp)).padding(3.dp).selectableGroup(),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        CalendarModeOption("月历", !isClockCalendar, onSelectMonth)
-        CalendarModeOption("钟历", isClockCalendar, onSelectClockCalendar)
+        CalendarModeOption("月历", !isClockCalendar, onSelectMonth, compact)
+        CalendarModeOption("钟历", isClockCalendar, onSelectClockCalendar, compact)
     }
 }
 
 @Composable
-private fun CalendarModeOption(text: String, selected: Boolean, onClick: () -> Unit) {
+private fun CalendarModeOption(text: String, selected: Boolean, onClick: () -> Unit, compact: Boolean) {
     val shape = RoundedCornerShape(11.dp)
     val selectedStyle = if (selected) {
         Modifier
@@ -51,11 +52,17 @@ private fun CalendarModeOption(text: String, selected: Boolean, onClick: () -> U
     }
     Box(
         modifier = Modifier
-            .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
+            .sizeIn(
+                minWidth = if (compact) 40.dp else 48.dp,
+                minHeight = if (compact) 30.dp else 48.dp,
+            )
             .then(selectedStyle)
             .clip(shape)
             .selectable(selected = selected, role = Role.Button, onClick = onClick)
-            .padding(horizontal = 12.dp, vertical = 8.dp),
+            .padding(
+                horizontal = if (compact) 6.dp else 12.dp,
+                vertical = if (compact) 4.dp else 8.dp,
+            ),
         contentAlignment = Alignment.Center,
     ) {
         BasicText(

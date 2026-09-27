@@ -40,6 +40,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -88,8 +89,9 @@ internal fun ClockCalendarScreen(
         val landscape = maxWidth > maxHeight
         val landscapeDialSize = minOf(maxWidth * 0.42f, maxHeight - 16.dp)
             .coerceIn(112.dp, 360.dp)
-        val portraitDialSize = minOf(maxWidth * 0.64f, maxHeight * 0.30f)
-            .coerceAtMost(260.dp)
+        val portraitDialSize = minOf(maxWidth * 0.86f, maxHeight * 0.40f)
+            .coerceAtMost(320.dp)
+        val compactCellHeight = ((maxHeight - 104.dp) / 6).coerceIn(24.dp, 32.dp)
         Column(Modifier.fillMaxSize()) {
             if (!landscape) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -124,18 +126,19 @@ internal fun ClockCalendarScreen(
                             .verticalScroll(rememberScrollState()),
                     ) {
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                            CalendarModeSwitcher(
-                                isClockCalendar = true,
-                                onSelectMonth = onOpenMonthCalendar,
-                                onSelectClockCalendar = {},
-                            )
-                            Spacer(Modifier.weight(1f))
                             ClockCalendarTimeReadout(actualTime, compact = true)
-                            ClockCalendarAction("今天", onToday)
+                            Spacer(Modifier.weight(1f))
+                            ClockCalendarAction("今天", onToday, compact = true)
                         }
-                        Spacer(Modifier.height(4.dp))
                         ClockCalendarMonthGrid(
-                            calendar, todayLunar, selectedDate, onMonthChange, onSelectDate, compact = true,
+                            calendar = calendar,
+                            todayLunar = todayLunar,
+                            selectedDate = selectedDate,
+                            onMonthChange = onMonthChange,
+                            onSelectDate = onSelectDate,
+                            onOpenMonthCalendar = onOpenMonthCalendar,
+                            compact = true,
+                            compactCellHeight = compactCellHeight,
                         )
                     }
                 }
@@ -157,7 +160,14 @@ internal fun ClockCalendarScreen(
                         ClockCalendarTimeReadout(actualTime)
                     }
                     Spacer(Modifier.height(12.dp))
-                    ClockCalendarMonthGrid(calendar, todayLunar, selectedDate, onMonthChange, onSelectDate)
+                    ClockCalendarMonthGrid(
+                        calendar = calendar,
+                        todayLunar = todayLunar,
+                        selectedDate = selectedDate,
+                        onMonthChange = onMonthChange,
+                        onSelectDate = onSelectDate,
+                        onOpenMonthCalendar = onOpenMonthCalendar,
+                    )
                 }
             }
         }
@@ -173,8 +183,8 @@ private fun ClockCalendarTimeReadout(actualTime: LocalTime, compact: Boolean = f
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            ClockCalendarText("${shichen.branch}时 · ${shichen.alias}", color = HomePalette.Gold, size = 15.sp)
-            ClockCalendarText(actualTime.format(formatter), color = HomePalette.TextBright, size = 14.sp)
+            ClockCalendarText("${shichen.branch}时 · ${shichen.alias}", color = HomePalette.Gold, size = 12.sp)
+            ClockCalendarText(actualTime.format(formatter), color = HomePalette.TextBright, size = 12.sp)
         }
         return
     }
@@ -194,53 +204,65 @@ private fun ClockCalendarMonthGrid(
     selectedDate: LocalDate,
     onMonthChange: (YearMonth) -> Unit,
     onSelectDate: (LocalDate) -> Unit,
+    onOpenMonthCalendar: () -> Unit,
     compact: Boolean = false,
+    compactCellHeight: Dp = 32.dp,
 ) {
     val month = calendar.month
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        if (compact) {
+            CalendarModeSwitcher(
+                isClockCalendar = true,
+                onSelectMonth = onOpenMonthCalendar,
+                onSelectClockCalendar = {},
+                compact = true,
+            )
+        }
         ClockCalendarText(
             "${month.year}年 · ${month.monthValue}月",
             Modifier.weight(1f),
             HomePalette.TextBright,
-            22.sp,
+            if (compact) 18.sp else 22.sp,
         )
         ClockCalendarAction(
             "‹", { onMonthChange(month.minusMonths(1)) },
             description = "上个月", enabled = month != YearMonth.of(-999999999, 1),
+            compact = compact,
         )
         ClockCalendarAction(
             "›", { onMonthChange(month.plusMonths(1)) },
             description = "下个月", enabled = month != YearMonth.of(999999999, 12),
+            compact = compact,
         )
     }
     val lunarCaption = todayLunar.lunarDateText
         ?.takeIf { todayLunar.hasLunarData && it.isNotBlank() }
         ?.let { "今日农历 · $it" }
         ?: "农历信息暂不可用"
-    ClockCalendarText(lunarCaption, color = HomePalette.TextMuted, size = 12.sp)
-    Spacer(Modifier.height(if (compact) 6.dp else 12.dp))
-    Row(Modifier.fillMaxWidth().padding(bottom = if (compact) 4.dp else 8.dp)) {
+    ClockCalendarText(lunarCaption, color = HomePalette.TextMuted, size = if (compact) 10.sp else 12.sp)
+    Spacer(Modifier.height(if (compact) 2.dp else 12.dp))
+    Row(Modifier.fillMaxWidth().padding(bottom = if (compact) 0.dp else 8.dp)) {
         listOf("一", "二", "三", "四", "五", "六", "日").forEach { weekday ->
             ClockCalendarText(
                 weekday, Modifier.weight(1f), HomePalette.TextMuted,
-                size = 12.sp, align = TextAlign.Center,
+                size = if (compact) 10.sp else 12.sp, align = TextAlign.Center,
             )
         }
     }
     Spacer(Modifier.fillMaxWidth().height(1.dp).background(HomePalette.Rule))
-    Spacer(Modifier.height(4.dp))
+    Spacer(Modifier.height(if (compact) 2.dp else 4.dp))
     calendar.cells.chunked(7).filter { week -> week.any { it != null } }.forEach { week ->
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
             repeat(7) { weekday ->
                 Box(Modifier.weight(1f)) {
                     ClockCalendarDayCell(
-                        week.getOrNull(weekday), selectedDate, onSelectDate, compact,
+                        week.getOrNull(weekday), selectedDate, onSelectDate, compact, compactCellHeight,
                     )
                 }
             }
         }
     }
-    Spacer(Modifier.height(8.dp))
+    if (!compact) Spacer(Modifier.height(8.dp))
 }
 
 @Composable
@@ -249,9 +271,10 @@ private fun ClockCalendarDayCell(
     selectedDate: LocalDate,
     onSelectDate: (LocalDate) -> Unit,
     compact: Boolean,
+    compactCellHeight: Dp,
 ) {
     if (day == null) {
-        Spacer(Modifier.fillMaxWidth().height(if (compact) 32.dp else 48.dp))
+        Spacer(Modifier.fillMaxWidth().height(if (compact) compactCellHeight else 48.dp))
         return
     }
     val isSelected = day.date == selectedDate
@@ -266,7 +289,7 @@ private fun ClockCalendarDayCell(
     Box(
         Modifier
             .fillMaxWidth()
-            .heightIn(min = if (compact) 32.dp else 48.dp)
+            .heightIn(min = if (compact) compactCellHeight else 48.dp)
             .padding(vertical = if (compact) 1.dp else 2.dp)
             .then(selectedStyle)
             .clip(shape)
@@ -291,14 +314,18 @@ private fun ClockCalendarAction(
     onClick: () -> Unit,
     description: String = text,
     enabled: Boolean = true,
+    compact: Boolean = false,
 ) {
     Box(
         Modifier
-            .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
+            .sizeIn(
+                minWidth = if (compact) 34.dp else 48.dp,
+                minHeight = if (compact) 34.dp else 48.dp,
+            )
             .clip(RoundedCornerShape(12.dp))
             .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
             .semantics { contentDescription = description }
-            .padding(8.dp),
+            .padding(if (compact) 4.dp else 8.dp),
         contentAlignment = Alignment.Center,
     ) {
         ClockCalendarText(text, color = if (enabled) HomePalette.TextMuted else HomePalette.TextLow)

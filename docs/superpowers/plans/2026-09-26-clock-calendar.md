@@ -151,7 +151,7 @@ internal fun ClockCalendarScreen(
 - [ ] Run `adb install -r .\app\build\outputs\apk\debug\app-debug.apk` on the connected Android device, then open the app. If no device is connected, install the same APK on an Android emulator.
 - [ ] Enter the existing month calendar from the home date action; confirm it remains the default destination and its summary/detail flow is unchanged.
 - [ ] Switch to Clock Calendar; confirm the month, selected date, today action, and month navigation match the month page.
-- [ ] Rotate between portrait and landscape; confirm portrait stacks the responsive centered dial, readout, and complete month grid, while landscape keeps the dial alone in the left pane and places a single-line readout in the calendar toolbar with every week visible using 32dp date rows.
+- [ ] Rotate between portrait and landscape; confirm portrait uses the available lower space for a larger centered dial above the readout and complete month grid, while landscape keeps the dial alone in the left pane, places a single-line readout above the calendar, and shows every week using compact rows sized to the available height (32dp at a 360dp landscape height).
 - [ ] Wait for a time tick and a shichen boundary; confirm the gnomon and current shichen update while tapping the dial does nothing.
 - [ ] Select another date; confirm only the highlight moves and the top lunar caption remains today’s date. Use today and Android Back to confirm their specified behavior.
 - [ ] Commit any final layout correction as `fix: refine clock calendar layout`.
