@@ -1,6 +1,8 @@
 package com.qmuduo.zichen.ui.home
 
 import android.graphics.Paint
+import android.graphics.RadialGradient
+import android.graphics.Shader
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.Typeface
@@ -37,6 +39,11 @@ internal fun DialCanvas(
         val centerY = size.height * 0.36f
 
         canvas.drawColor(HomePalette.Background.toArgb())
+        val atmosphere = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            shader = RadialGradient(centerX, centerY - 80f * dialScale, size.height.coerceAtLeast(1f) * 0.65f,
+                intArrayOf(HomePalette.Surface.toArgb(), HomePalette.Background.toArgb()), null, Shader.TileMode.CLAMP)
+        }
+        canvas.drawRect(0f, 0f, size.width, size.height, atmosphere)
         drawShichenDial(
             canvas = canvas,
             centerX = centerX,
@@ -86,7 +93,7 @@ private fun drawReadout(
         centerX,
         530.796f * scaleY,
         listOf(
-            TextPart("${shichen.branch}时", 24f * scaleX, nameColor),
+            TextPart("${shichen.branch}时", 30f * scaleX, nameColor),
             TextPart(shichen.alias, 12f * scaleX, HomePalette.TextMuted.toArgb(), 12f * scaleX),
         ),
     )
@@ -97,7 +104,7 @@ private fun drawReadout(
         563.172f * scaleY,
         listOf(
             TextPart("${reading.quarterLabel} · ", 12f * scaleX, HomePalette.Text.toArgb()),
-            TextPart(reading.clockText, 12f * scaleX, HomePalette.TextBright.toArgb()),
+            TextPart(reading.clockText, 12f * scaleX, HomePalette.TextBright.toArgb(), numeric = true),
         ),
     )
     drawCenteredTrackedText(
@@ -109,7 +116,10 @@ private fun drawReadout(
         HomePalette.Text.toArgb(),
         2f * scaleX,
     )
-    drawText(canvas, reading.interval, centerX, 639f * scaleY, 16f * scaleX, HomePalette.Text.toArgb(), Paint.Align.CENTER)
+    val intervalPaint = serifPaint(12f * scaleX, HomePalette.TextMuted.toArgb(), Paint.Align.CENTER).apply {
+        typeface = Typeface.create("monospace", Typeface.NORMAL)
+    }
+    canvas.drawText(reading.interval, centerX, 639f * scaleY, intervalPaint)
     watchReading?.let {
         drawText(
             canvas,
@@ -141,7 +151,7 @@ private fun drawBottomEntries(
             strokeWidth = 0.8f * scaleX
         }
         canvas.drawRoundRect(bounds, height / 2f, height / 2f, outline)
-        drawReturnIcon(canvas, centerX - 20f * scaleX, top + height / 2f, scaleX)
+        drawReturnIcon(canvas, centerX - 36f * scaleX, top + height / 2f, scaleX)
         drawText(canvas, "回到此刻", centerX + 9f * scaleX, top + height / 2f + 4f * scaleY, 12f * scaleX, HomePalette.Preview.toArgb(), Paint.Align.CENTER)
     }
 
@@ -149,6 +159,15 @@ private fun drawBottomEntries(
     val detailX = centerX
     val timerX = centerX + 88f * scaleX
     val iconY = 770.208f * scaleY
+    val surface = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = HomePalette.Surface.copy(alpha = 0.65f).toArgb() }
+    val edge = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = HomePalette.Rule.toArgb()
+        style = Paint.Style.STROKE
+        strokeWidth = 0.5f * scaleX
+    }
+    val tray = RectF(centerX - 143f * scaleX, 741f * scaleY, centerX + 143f * scaleX, 811f * scaleY)
+    canvas.drawRoundRect(tray, 18f * scaleX, 18f * scaleX, surface)
+    canvas.drawRoundRect(tray, 18f * scaleX, 18f * scaleX, edge)
     drawCalendarIcon(canvas, dateX, iconY, scaleX)
     drawBookIcon(canvas, detailX, iconY, scaleX)
     drawHourglassIcon(canvas, timerX, iconY, scaleX)
@@ -223,6 +242,7 @@ private data class TextPart(
     val sizePx: Float,
     val color: Int,
     val gapBeforePx: Float = 0f,
+    val numeric: Boolean = false,
 )
 
 private fun drawInlineParts(
@@ -231,7 +251,9 @@ private fun drawInlineParts(
     baselineY: Float,
     parts: List<TextPart>,
 ) {
-    val paints = parts.map { serifPaint(it.sizePx, it.color, Paint.Align.LEFT) }
+    val paints = parts.map { part -> serifPaint(part.sizePx, part.color, Paint.Align.LEFT).apply {
+        if (part.numeric) typeface = Typeface.create("monospace", Typeface.NORMAL)
+    } }
     val totalWidth = parts.indices.sumOf { index ->
         parts[index].gapBeforePx.toDouble() + paints[index].measureText(parts[index].text).toDouble()
     }.toFloat()

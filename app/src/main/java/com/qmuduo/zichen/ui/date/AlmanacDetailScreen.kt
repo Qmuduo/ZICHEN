@@ -39,13 +39,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.qmuduo.zichen.calendar.LunarCalendarDay
 import com.qmuduo.zichen.ui.theme.HomePalette
+import com.qmuduo.zichen.ui.theme.inkSurface
 
 @Composable
 fun AlmanacDetailScreen(day: LunarCalendarDay, onBack: () -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
-            .background(HomePalette.Background)
+            .inkSurface()
             .statusBarsPadding()
             .navigationBarsPadding()
             .verticalScroll(rememberScrollState())

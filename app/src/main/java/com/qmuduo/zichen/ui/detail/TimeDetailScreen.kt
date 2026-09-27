@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.qmuduo.zichen.time.Shichen
 import com.qmuduo.zichen.time.TimeDetailContents
 import com.qmuduo.zichen.ui.theme.HomePalette
+import com.qmuduo.zichen.ui.theme.inkSurface
 
 @Composable
 fun TimeDetailScreen(shichen: Shichen, onBack: () -> Unit) {
@@ -37,7 +38,7 @@ fun TimeDetailScreen(shichen: Shichen, onBack: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(HomePalette.Background)
+            .inkSurface()
             .statusBarsPadding()
             .navigationBarsPadding()
             .verticalScroll(rememberScrollState())
@@ -77,8 +78,8 @@ fun TimeDetailScreen(shichen: Shichen, onBack: () -> Unit) {
             style = TextStyle(
                 color = HomePalette.Gold,
                 fontFamily = FontFamily.Serif,
-                fontSize = 56.sp,
-                lineHeight = 68.sp,
+                fontSize = 48.sp,
+                lineHeight = 62.sp,
                 fontWeight = FontWeight.Light,
             ),
         )
@@ -178,6 +179,6 @@ private fun Rule() {
         modifier = Modifier
             .fillMaxWidth()
             .height(1.dp)
-            .background(HomePalette.TextLow.copy(alpha = 0.52f)),
+            .background(HomePalette.Rule),
     )
 }

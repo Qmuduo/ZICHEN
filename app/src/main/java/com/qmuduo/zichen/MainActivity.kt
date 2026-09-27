@@ -11,6 +11,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -23,6 +27,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
+import com.qmuduo.zichen.ui.theme.inkSurface
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
@@ -162,69 +169,75 @@ private fun ZichenApp() {
         }
     }
 
-    when (AppPage.valueOf(page)) {
-        AppPage.HOME -> HomeScreen(
-            previewedIndex = previewedIndex,
-            onPreviewedIndexChange = { previewedIndex = it },
-            onOpenTimeDetail = { index ->
-                detailIndex = index
-                page = AppPage.TIME_DETAIL.name
-            },
-            onOpenDate = { page = AppPage.DATE_DETAIL.name },
-            onOpenTimer = { page = AppPage.TIMER.name },
-        )
+    val pageOpacity = remember(page) { Animatable(0f) }
+    LaunchedEffect(page) { pageOpacity.animateTo(1f, tween(180)) }
+    Box(Modifier.fillMaxSize().inkSurface()) {
+        Box(Modifier.fillMaxSize().graphicsLayer { alpha = pageOpacity.value }) {
+            when (AppPage.valueOf(page)) {
+                AppPage.HOME -> HomeScreen(
+                    previewedIndex = previewedIndex,
+                    onPreviewedIndexChange = { previewedIndex = it },
+                    onOpenTimeDetail = { index ->
+                        detailIndex = index
+                        page = AppPage.TIME_DETAIL.name
+                    },
+                    onOpenDate = { page = AppPage.DATE_DETAIL.name },
+                    onOpenTimer = { page = AppPage.TIMER.name },
+                )
 
-        AppPage.TIME_DETAIL -> TimeDetailScreen(
-            shichen = TraditionalTime.shichen[detailIndex],
-            onBack = { page = AppPage.HOME.name },
-        )
+                AppPage.TIME_DETAIL -> TimeDetailScreen(
+                    shichen = TraditionalTime.shichen[detailIndex],
+                    onBack = { page = AppPage.HOME.name },
+                )
 
-        AppPage.DATE_DETAIL -> LunarCalendarScreen(
-            month = calendarMonth,
-            selectedDate = selectedDate,
-            today = today,
-            provider = calendarProvider,
-            onBack = { page = AppPage.HOME.name },
-            onMonthChange = onCalendarMonthChange,
-            onSelectDate = onSelectCalendarDate,
-            onToday = onCalendarToday,
-            onOpenClockCalendar = { page = AppPage.CLOCK_CALENDAR.name },
-            onOpenDetails = { date ->
-                selectedDateIso = date.toString()
-                page = AppPage.ALMANAC_DETAIL.name
-            },
-        )
+                AppPage.DATE_DETAIL -> LunarCalendarScreen(
+                    month = calendarMonth,
+                    selectedDate = selectedDate,
+                    today = today,
+                    provider = calendarProvider,
+                    onBack = { page = AppPage.HOME.name },
+                    onMonthChange = onCalendarMonthChange,
+                    onSelectDate = onSelectCalendarDate,
+                    onToday = onCalendarToday,
+                    onOpenClockCalendar = { page = AppPage.CLOCK_CALENDAR.name },
+                    onOpenDetails = { date ->
+                        selectedDateIso = date.toString()
+                        page = AppPage.ALMANAC_DETAIL.name
+                    },
+                )
 
-        AppPage.CLOCK_CALENDAR -> ClockCalendarScreen(
-            month = calendarMonth,
-            selectedDate = selectedDate,
-            today = today,
-            provider = calendarProvider,
-            onMonthChange = onCalendarMonthChange,
-            onSelectDate = onSelectCalendarDate,
-            onToday = onCalendarToday,
-            onOpenMonthCalendar = { page = AppPage.DATE_DETAIL.name },
-        )
+                AppPage.CLOCK_CALENDAR -> ClockCalendarScreen(
+                    month = calendarMonth,
+                    selectedDate = selectedDate,
+                    today = today,
+                    provider = calendarProvider,
+                    onMonthChange = onCalendarMonthChange,
+                    onSelectDate = onSelectCalendarDate,
+                    onToday = onCalendarToday,
+                    onOpenMonthCalendar = { page = AppPage.DATE_DETAIL.name },
+                )
 
-        AppPage.ALMANAC_DETAIL -> AlmanacDetailScreen(
-            day = remember(calendarProvider, selectedDate) { calendarProvider.getDate(selectedDate) },
-            onBack = { page = AppPage.DATE_DETAIL.name },
-        )
+                AppPage.ALMANAC_DETAIL -> AlmanacDetailScreen(
+                    day = remember(calendarProvider, selectedDate) { calendarProvider.getDate(selectedDate) },
+                    onBack = { page = AppPage.DATE_DETAIL.name },
+                )
 
-        AppPage.TIMER -> TimerScreen(
-            state = timerState,
-            nowEpochMillis = nowEpochMillis,
-            exactAlarmAllowed = exactAlarmAllowed,
-            notificationsAllowed = notificationsAllowed,
-            onStart = { preset -> timerState = timerCoordinator.start(preset) },
-            onPause = { timerState = timerCoordinator.pause() },
-            onResume = { timerState = timerCoordinator.resume() },
-            onReset = { timerState = timerCoordinator.reset() },
-            onSelectPreset = { preset -> timerState = timerCoordinator.selectPreset(preset) },
-            onToggleSound = { timerState = timerCoordinator.toggleSound() },
-            onRequestReminderPermissions = requestReminderPermissions,
-            onBack = { page = AppPage.HOME.name },
-        )
+                AppPage.TIMER -> TimerScreen(
+                    state = timerState,
+                    nowEpochMillis = nowEpochMillis,
+                    exactAlarmAllowed = exactAlarmAllowed,
+                    notificationsAllowed = notificationsAllowed,
+                    onStart = { preset -> timerState = timerCoordinator.start(preset) },
+                    onPause = { timerState = timerCoordinator.pause() },
+                    onResume = { timerState = timerCoordinator.resume() },
+                    onReset = { timerState = timerCoordinator.reset() },
+                    onSelectPreset = { preset -> timerState = timerCoordinator.selectPreset(preset) },
+                    onToggleSound = { timerState = timerCoordinator.toggleSound() },
+                    onRequestReminderPermissions = requestReminderPermissions,
+                    onBack = { page = AppPage.HOME.name },
+                )
+            }
+        }
     }
 }
 

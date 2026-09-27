@@ -30,7 +30,7 @@ internal fun CalendarModeSwitcher(
     onSelectClockCalendar: () -> Unit,
 ) {
     Row(
-        modifier = Modifier.selectableGroup(),
+        modifier = Modifier.background(HomePalette.Background.copy(alpha = 0.55f), RoundedCornerShape(14.dp)).padding(3.dp).selectableGroup(),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -41,11 +41,11 @@ internal fun CalendarModeSwitcher(
 
 @Composable
 private fun CalendarModeOption(text: String, selected: Boolean, onClick: () -> Unit) {
-    val shape = RoundedCornerShape(20.dp)
+    val shape = RoundedCornerShape(11.dp)
     val selectedStyle = if (selected) {
         Modifier
             .background(HomePalette.Gold.copy(alpha = 0.10f), shape)
-            .border(1.dp, HomePalette.Gold.copy(alpha = 0.5f), shape)
+            .border(0.5.dp, HomePalette.Gold.copy(alpha = 0.28f), shape)
     } else {
         Modifier
     }

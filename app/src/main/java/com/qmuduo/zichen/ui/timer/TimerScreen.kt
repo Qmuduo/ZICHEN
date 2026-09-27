@@ -1,6 +1,7 @@
 package com.qmuduo.zichen.ui.timer
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.border
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -42,7 +43,9 @@ import androidx.compose.ui.window.Dialog
 import com.qmuduo.zichen.timer.TimerPreset
 import com.qmuduo.zichen.timer.TimerState
 import com.qmuduo.zichen.timer.TimerStatus
+import com.qmuduo.zichen.ui.theme.polishedClick
 import com.qmuduo.zichen.ui.theme.HomePalette
+import com.qmuduo.zichen.ui.theme.inkSurface
 import java.util.Locale
 
 @Composable
@@ -81,7 +84,7 @@ fun TimerScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(HomePalette.Background)
+            .inkSurface()
             .statusBarsPadding()
             .navigationBarsPadding()
             .verticalScroll(rememberScrollState())
@@ -121,9 +124,9 @@ fun TimerScreen(
             text = formatRemaining(remaining),
             modifier = Modifier.fillMaxWidth(),
             style = TextStyle(
-                color = HomePalette.Gold,
-                fontFamily = FontFamily.Serif,
-                fontSize = 48.sp,
+                color = HomePalette.GoldLight,
+                fontFamily = FontFamily.Monospace,
+                fontSize = 44.sp,
                 lineHeight = 58.sp,
                 fontWeight = FontWeight.Light,
                 textAlign = TextAlign.Center,
@@ -188,7 +191,7 @@ fun TimerScreen(
         }
 
         Spacer(Modifier.height(24.dp))
-        Spacer(Modifier.fillMaxWidth().height(1.dp).background(HomePalette.TextLow.copy(alpha = 0.52f)))
+        Spacer(Modifier.fillMaxWidth().height(1.dp).background(HomePalette.Rule))
         Spacer(Modifier.height(17.dp))
         Row(
             modifier = Modifier
@@ -253,9 +256,10 @@ private fun ActionBox(label: String, primary: Boolean, modifier: Modifier = Modi
     Box(
         modifier = modifier
             .height(48.dp)
-            .clip(RoundedCornerShape(24.dp))
-            .background(if (primary) HomePalette.Gold.copy(alpha = 0.12f) else Color.Transparent)
-            .clickable(onClick = onClick),
+            .polishedClick(onClick)
+            .clip(RoundedCornerShape(14.dp))
+            .background(if (primary) HomePalette.Gold.copy(alpha = 0.16f) else HomePalette.Surface)
+            .border(0.5.dp, if (primary) HomePalette.Gold.copy(alpha = 0.5f) else HomePalette.Rule, RoundedCornerShape(14.dp)),
         contentAlignment = Alignment.Center,
     ) {
         BasicText(
@@ -334,7 +338,7 @@ private fun ReminderExplanation(
             modifier = Modifier
                 .widthIn(max = 340.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(HomePalette.Background)
+                .inkSurface()
                 .padding(24.dp),
         ) {
             BasicText(

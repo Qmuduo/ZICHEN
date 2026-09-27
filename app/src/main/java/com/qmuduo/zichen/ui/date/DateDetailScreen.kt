@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.qmuduo.zichen.date.LocalDateInfoProvider
 import com.qmuduo.zichen.ui.theme.HomePalette
+import com.qmuduo.zichen.ui.theme.inkSurface
 import java.time.Instant
 import java.time.ZoneId
 import kotlinx.coroutines.delay
@@ -56,7 +57,7 @@ fun DateDetailScreen(onBack: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(HomePalette.Background)
+            .inkSurface()
             .statusBarsPadding()
             .navigationBarsPadding()
             .verticalScroll(rememberScrollState())
@@ -116,7 +117,7 @@ fun DateDetailScreen(onBack: () -> Unit) {
         )
 
         Spacer(Modifier.height(40.dp))
-        Spacer(Modifier.fillMaxWidth().height(1.dp).background(HomePalette.TextLow.copy(alpha = 0.52f)))
+        Spacer(Modifier.fillMaxWidth().height(1.dp).background(HomePalette.Rule))
         Spacer(Modifier.height(27.dp))
         BasicText(
             text = "此时节气",

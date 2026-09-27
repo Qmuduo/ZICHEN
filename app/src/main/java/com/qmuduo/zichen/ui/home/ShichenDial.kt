@@ -1,6 +1,7 @@
 package com.qmuduo.zichen.ui.home
 
 import android.graphics.LinearGradient
+import android.graphics.RadialGradient
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
@@ -47,6 +48,7 @@ internal fun drawShichenDial(
     currentIndex: Int,
     previewIndex: Int? = null,
 ) {
+    drawDialSurface(canvas, centerX, centerY, unit)
     drawPreviewSector(canvas, centerX, centerY, unit, previewIndex)
     drawHourTicks(canvas, centerX, centerY, unit)
     drawInitialAndZheng(canvas, centerX, centerY, unit)
@@ -54,6 +56,28 @@ internal fun drawShichenDial(
     drawStems(canvas, centerX, centerY, unit)
     drawGnomon(canvas, centerX, centerY, unit, DialGeometry.pointerRotationDegrees(actualTime))
     drawCurrentArc(canvas, centerX, centerY, unit, currentIndex)
+}
+
+private fun drawDialSurface(canvas: android.graphics.Canvas, x: Float, y: Float, unit: Float) {
+    if (unit <= 0f) return
+    val face = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        shader = RadialGradient(x - 42f * unit, y - 58f * unit, 240f * unit,
+            intArrayOf(HomePalette.Surface.toArgb(), HomePalette.Background.toArgb()),
+            null, Shader.TileMode.CLAMP)
+    }
+    canvas.drawCircle(x, y, 174f * unit, face)
+    val rim = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.STROKE
+        strokeWidth = 0.65f * unit
+        shader = LinearGradient(x - 170f * unit, y - 170f * unit, x + 170f * unit, y + 170f * unit,
+            intArrayOf(HomePalette.Gold.copy(alpha = 0.38f).toArgb(), HomePalette.Rule.copy(alpha = 0.18f).toArgb(), HomePalette.Gold.copy(alpha = 0.20f).toArgb()),
+            null, Shader.TileMode.CLAMP)
+    }
+    canvas.drawCircle(x, y, 174f * unit, rim)
+    rim.shader = null
+    rim.color = HomePalette.Rule.copy(alpha = 0.65f).toArgb()
+    rim.strokeWidth = 0.5f * unit
+    canvas.drawCircle(x, y, 89f * unit, rim)
 }
 
 private fun drawPreviewSector(
@@ -114,9 +138,9 @@ private fun drawHourTicks(canvas: android.graphics.Canvas, centerX: Float, cente
         val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             this.color = color
             strokeWidth = when {
-                isShichenBoundary -> 1.8f
-                isHalfHourBoundary -> 1.6f
-                else -> 1.3f
+                isShichenBoundary -> 1.25f
+                isHalfHourBoundary -> 0.9f
+                else -> 0.65f
             } * unit
             strokeCap = Paint.Cap.BUTT
         }
@@ -199,13 +223,27 @@ private fun drawGnomon(
         style = Paint.Style.FILL
     }
     canvas.drawPath(needle, beam)
+    val facet = Path().apply {
+        moveTo(0f, -88f * unit)
+        lineTo(2.4f * unit, -7.2f * unit)
+        lineTo(0f, -7.2f * unit)
+        close()
+    }
+    canvas.drawPath(facet, Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        shader = LinearGradient(0f, -88f * unit, 0f, -7.2f * unit,
+            HomePalette.GoldLight.toArgb(), HomePalette.BronzeShadow.toArgb(), Shader.TileMode.CLAMP)
+    })
     canvas.restore()
 
     val hubRing = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = HomePalette.Gold.toArgb()
         style = Paint.Style.STROKE
-        strokeWidth = 1.4f * unit
+        strokeWidth = 1f * unit
     }
+    canvas.drawCircle(centerX, centerY, 9f * unit, Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        shader = LinearGradient(centerX - 8f * unit, centerY - 8f * unit, centerX + 8f * unit, centerY + 8f * unit,
+            HomePalette.Surface.toArgb(), HomePalette.Background.toArgb(), Shader.TileMode.CLAMP)
+    })
     canvas.drawCircle(centerX, centerY, 7.2f * unit, hubRing)
     val hub = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = HomePalette.Gold.toArgb() }
     canvas.drawCircle(centerX, centerY, 2.2f * unit, hub)
@@ -252,7 +290,7 @@ private fun drawOutlinedText(
     val outline = Paint(fillPaint).apply {
         color = HomePalette.Background.toArgb()
         style = Paint.Style.STROKE
-        strokeWidth = 1.8f * unit
+        strokeWidth = 0.7f * unit
         strokeJoin = Paint.Join.ROUND
     }
     canvas.drawText(text, x, y, outline)

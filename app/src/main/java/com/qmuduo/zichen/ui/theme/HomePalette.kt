@@ -3,12 +3,15 @@ package com.qmuduo.zichen.ui.theme
 import androidx.compose.ui.graphics.Color
 
 object HomePalette {
-    val Background = Color(0xFF0F0E0D)
-    val Gold = Color(0xFFD9A94B)
-    val GoldLight = Color(0xFFF2C979)
-    val Preview = Color(0xFF7FBFA4)
-    val Text = Color(0xFFA8A29A)
-    val TextMuted = Color(0xFF8C867C)
-    val TextLow = Color(0xFF5E5A53)
-    val TextBright = Color(0xFFEFEAE0)
+    val Background = Color(0xFF111210)
+    val Surface = Color(0xFF20221D)
+    val Rule = Color(0xFF393C32)
+    val BronzeShadow = Color(0xFF695237)
+    val Gold = Color(0xFFC6A56C)
+    val GoldLight = Color(0xFFE5C996)
+    val Preview = Color(0xFF91B8A5)
+    val Text = Color(0xFFC5C1B5)
+    val TextMuted = Color(0xFFA19F91)
+    val TextLow = Color(0xFF858577)
+    val TextBright = Color(0xFFF0EBDF)
 }

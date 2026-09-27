@@ -116,7 +116,7 @@ internal fun ClockCalendarScreen(
 - A private `ClockCalendarDayCell(day: LunarCalendarDay?, selectedDate: LocalDate, onSelectDate: (LocalDate) -> Unit)` renders only the Gregorian day number and selected state. Null cells remain empty padding cells.
 
 - [ ] Create the screen root with status/navigation insets and dark `HomePalette` background.
-- [ ] Use `BoxWithConstraints` and choose the layout with `maxWidth > maxHeight`: landscape places the passive dial and its shichen/time readout in the left pane and the full month grid in the right pane; portrait puts a 112dp compact dial at the top and the full month grid below it.
+- [ ] Use `BoxWithConstraints` and choose the layout with `maxWidth > maxHeight`: landscape centers the passive dial alone in the left pane and places the switcher, single-line compact shichen/time readout, and today action in one toolbar above the full month grid; portrait stacks a centered dial sized to at most 64% of available width and 30% of available height, capped at 260dp, centered readout, and full month grid below the header.
 - [ ] Put shichen and time readout outside the dial face. Keep the center limited to the existing gnomon and hub.
 - [ ] Add the shared mode switcher with the clock-calendar option selected; retain month navigation and a today action.
 - [ ] Render weekdays and all six weeks from `LunarCalendarMonth.cells`; display Gregorian numbers only, with a restrained selected-date highlight and no date summary or detail action.
@@ -151,7 +151,7 @@ internal fun ClockCalendarScreen(
 - [ ] Run `adb install -r .\app\build\outputs\apk\debug\app-debug.apk` on the connected Android device, then open the app. If no device is connected, install the same APK on an Android emulator.
 - [ ] Enter the existing month calendar from the home date action; confirm it remains the default destination and its summary/detail flow is unchanged.
 - [ ] Switch to Clock Calendar; confirm the month, selected date, today action, and month navigation match the month page.
-- [ ] Rotate between portrait and landscape; confirm the dial moves from the compact top ornament to the left pane and the month grid remains complete.
+- [ ] Rotate between portrait and landscape; confirm portrait stacks the responsive centered dial, readout, and complete month grid, while landscape keeps the dial alone in the left pane and places a single-line readout in the calendar toolbar with every week visible using 32dp date rows.
 - [ ] Wait for a time tick and a shichen boundary; confirm the gnomon and current shichen update while tapping the dial does nothing.
 - [ ] Select another date; confirm only the highlight moves and the top lunar caption remains today’s date. Use today and Android Back to confirm their specified behavior.
 - [ ] Commit any final layout correction as `fix: refine clock calendar layout`.

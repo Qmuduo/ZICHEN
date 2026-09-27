@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import com.qmuduo.zichen.calendar.LunarCalendarDay
 import com.qmuduo.zichen.calendar.LunarCalendarProvider
 import com.qmuduo.zichen.ui.theme.HomePalette
+import com.qmuduo.zichen.ui.theme.inkSurface
 import java.time.LocalDate
 import java.time.YearMonth
 
@@ -65,7 +66,7 @@ fun LunarCalendarScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(HomePalette.Background)
+            .inkSurface()
             .statusBarsPadding()
             .navigationBarsPadding()
             .verticalScroll(rememberScrollState())
@@ -85,8 +86,8 @@ fun LunarCalendarScreen(
             CalendarText(
                 "${month.year}年 · ${month.monthValue}月",
                 Modifier.weight(1f),
-                HomePalette.Gold,
-                24.sp,
+                HomePalette.TextBright,
+                22.sp,
             )
             CalendarAction(
                 "‹", { onMonthChange(month.minusMonths(1)) },
@@ -140,8 +141,8 @@ private fun CalendarCell(
     }
     val isSelected = day.date == selectedDate
     val isToday = day.date == today
-    val shape = RoundedCornerShape(50)
-    val outline = if (isSelected) Modifier.border(1.dp, HomePalette.Gold, shape) else Modifier
+    val shape = RoundedCornerShape(12.dp)
+    val outline = if (isSelected) Modifier.background(HomePalette.Gold.copy(alpha = 0.10f), shape).border(0.5.dp, HomePalette.Gold.copy(alpha = 0.45f), shape) else Modifier
     val description = listOfNotNull(
         "${day.date.year}年${day.date.monthValue}月${day.date.dayOfMonth}日",
         day.weekday, day.lunarDateText,
@@ -255,7 +256,7 @@ private fun CalendarAction(
 
 @Composable
 private fun CalendarRule() {
-    Spacer(Modifier.fillMaxWidth().height(1.dp).background(HomePalette.TextLow.copy(alpha = 0.52f)))
+    Spacer(Modifier.fillMaxWidth().height(1.dp).background(HomePalette.Rule))
 }
 
 @Composable
