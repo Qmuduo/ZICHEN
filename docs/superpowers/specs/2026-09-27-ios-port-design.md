@@ -1,7 +1,7 @@
 # Zichen iOS 版设计
 
 **日期：** 2026-09-27  
-**状态：** 页面范围、SwiftUI 路线、工程边界和 iOS 16 起步版本已由用户确认；待用户审阅本文档。  
+**状态：** 设计文档已由用户审阅并认可；计时首次提醒说明按现有 Android 流程补全。Xcode 构建与真机验证待 Mac 环境。  
 **目标平台：** iPhone，iOS 16 及以上。  
 **现有应用：** Android 原生 Kotlin + Jetpack Compose。
 
